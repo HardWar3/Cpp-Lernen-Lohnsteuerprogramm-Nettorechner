@@ -1,4 +1,4 @@
-#include "user_daten.hpp"
+#include "./user_daten.hpp"
 #include <iostream>
 
 extern int Lohnsteuer_2022( struct user_daten* user );
@@ -10,7 +10,7 @@ int main( int argc, char *argv[] ) {
 
 	struct user_daten* user;
 
-	user = new_User_daten();
+	user = new_user_daten();
 
 	std::cout << "Bitte geben Sie Ihr Geburtsjahr ein : ---> ";
 	std::cin >> user->ajahr;
@@ -54,16 +54,16 @@ int main( int argc, char *argv[] ) {
 		std::cin >> user->zkf;
 
 	}
-
+	/*
 	user->pvz = 0;
 
 	if ( 2022 - user->ajahr > 23 ) {
 
 		user->pvz = 1;
 
-	}
+	}*/
 	
-	std::cout << "Kinderlosenzuschlag ? ( 0 ) nein ( 1 ) ";
+	std::cout << "Kinderlosenzuschlag ?  ( 0 ) nein ( 1 ) ";
 	std::cin >> user->pvz;
 
 	std::cout << "Sind Sie in der Kirche ( Ja = 1 / Nein = 0 ) : ---> ";
@@ -106,19 +106,19 @@ int main( int argc, char *argv[] ) {
 	sozialversicherung( user );
 	daten_zusammenrechnen( user );
 
-	std::cout << ">>-->>-- - GB Jahr " << user->ajahr << " - --<<--<<";
-	std::cout << ">>-->>-- - LSTLZZ " << user->lstlzz << " - --<<--<<";
-	std::cout << ">>-->>-- - SOLI " << user->solzlzz << " - --<<--<<";
-	std::cout << ">>-->>-- - Kirche " << user->kst << " - --<<--<<";
-	std::cout << ">>-->>-- - Renten " << user->rv << " - --<<--<<";
-	std::cout << ">>-->>-- - Arlose " << user->av << " - --<<--<<";
-	std::cout << ">>-->>-- - Kranken " << user->kv << " - --<<--<<";
-	std::cout << ">>-->>-- - Pflege AN " << user->pv_an << " - --<<--<<";
-	std::cout << ">>-->>-- - Pflege AG " << user->pv_ag << " - --<<--<<";
-	std::cout << ">>-->>-- - Gesamt_ST " << user->gesamt_st << " - --<<--<<";
-	std::cout << ">>-->>-- - sum_so_an " << user->sum_sv_an << " - --<<--<<";
-	std::cout << ">>-->>-- - sum_so_ag " << user->sum_sv_ag << " - --<<--<<";
-	std::cout << ">>-->>-- - netto_lohn " << user->netto_lohn << " - --<<--<<";
-	std::cout << ">>-->>-- - gesammt_belast " << user->gesamt_belast_ag << " - --<<--<<";
+	std::cout << ">>-->>-- - GB Jahr " << user->ajahr << " - --<<--<<\n";
+	std::cout << ">>-->>-- - LSTLZZ " << user->lstlzz << " - --<<--<<\n";
+	std::cout << ">>-->>-- - SOLI " << user->solzlzz << " - --<<--<<\n";
+	std::cout << ">>-->>-- - Kirche " << user->kst << " - --<<--<<\n";
+	std::cout << ">>-->>-- - Renten " << user->rv << " - --<<--<<\n";
+	std::cout << ">>-->>-- - Arlose " << user->av << " - --<<--<<\n";
+	std::cout << ">>-->>-- - Kranken " << user->kv << " - --<<--<<\n";
+	std::cout << ">>-->>-- - Pflege AN " << user->pv_an << " - --<<--<<\n";
+	std::cout << ">>-->>-- - Pflege AG " << user->pv_ag << " - --<<--<<\n";
+	std::cout << ">>-->>-- - Gesamt_ST " << user->gesamt_st << " - --<<--<<\n";
+	std::cout << ">>-->>-- - sum_so_an " << user->sum_sv_an << " - --<<--<<\n";
+	std::cout << ">>-->>-- - sum_so_ag " << user->sum_sv_ag << " - --<<--<<\n";
+	std::cout << ">>-->>-- - netto_lohn " << user->netto_lohn << " - --<<--<<\n";
+	std::cout << ">>-->>-- - gesammt_belast " << user->gesamt_belast_ag << " - --<<--<<\n";
 
 }
