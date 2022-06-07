@@ -174,6 +174,6 @@ struct user_daten {
 
 };
 
-extern struct user_daten* new_User_daten();
+extern struct user_daten* new_user_daten();
 
 #endif
