@@ -6,7 +6,7 @@ void uplstlzz( struct user_daten* user ) {
 
 	user->jw = user->lstjahr * 100;
 
-	uplstlzz( user );
+	upanteil( user );
 
 	user->lstlzz = user->anteil1;
 
