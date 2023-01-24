@@ -1,8 +1,8 @@
-#include "../user_daten.hpp"
-#include <math.h>
+#include <user_daten.hpp>
+#include <runden.hpp>
 
 extern void mst5_6( struct user_daten* user );
-extern void uptab22( struct user_daten* user );
+extern void uptab23( struct user_daten* user );
 
 void upmlst( struct user_daten* user ) {
 
@@ -14,13 +14,13 @@ void upmlst( struct user_daten* user ) {
 
 	} else {
 	
-		user->x = floor( user->zve / user->kztab ); // abrunden auf ganze euro
+		user->x = abrunden( 0, user->zve / (double)user->kztab ); // abrunden auf ganze euro
 
 	}
 
 	if ( user->stkl < 5 ) {
 		
-		uptab22( user );
+		uptab23( user );
 
 	} else {		
 		

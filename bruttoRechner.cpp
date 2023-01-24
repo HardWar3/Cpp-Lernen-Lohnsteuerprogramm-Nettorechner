@@ -1,15 +1,20 @@
-#include "./user_daten.hpp"
+#include <user_daten.hpp>
 #include <iostream>
+#include <iomanip>
+#include <Windows.h>
 
-extern int Lohnsteuer_2022( struct user_daten* user );
+extern int Lohnsteuer_2023( struct user_daten* user );
 extern void kirchensteuer( struct user_daten* user );
 extern void sozialversicherung( struct user_daten* user );
 extern void daten_zusammenrechnen( struct user_daten* user);
 
 int main( int argc, char *argv[] ) {
-
 	struct user_daten* user;
+	int old_precision;
 
+	SetConsoleOutputCP(1252);
+	SetConsoleCP(1252);
+	
 	user = new_user_daten();
 
 	std::cout << "Bitte geben Sie Ihr Geburtsjahr ein : ---> ";
@@ -18,7 +23,7 @@ int main( int argc, char *argv[] ) {
 	user->alter1 = 0;
 
 	// TODO
-	if ( 2022 - user->ajahr > 64 ) {
+	if ( 2023 - user->ajahr > 64 ) {
 
 		user->alter1 = 1;
 
@@ -29,13 +34,17 @@ int main( int argc, char *argv[] ) {
 
 	if ( user->lzz == 1 ) {
 
+		user->lzz = 2;
+
 		std::cout << "Geben Sie nun ihr BruttoLohn im Monat an : ---> ";
 		std::cin >> user->re4;
 
-		user->re4 = user->re4 * 100;
-		user->jre4 = user->re4 * 12;
+		user->re4 = user->re4 * 100.0;
+		user->jre4 = user->re4 * 12.0;
 
 	} else if ( user->lzz == 0 ) {
+
+		user->lzz = 1;
 
 		std::cout << "Geben Sie nun ihr BruttoLohn im Jahr an : ---> ";
 		std::cin >> user->re4;
@@ -54,14 +63,12 @@ int main( int argc, char *argv[] ) {
 		std::cin >> user->zkf;
 
 	}
-	/*
-	user->pvz = 0;
 
 	if ( 2022 - user->ajahr > 23 ) {
 
 		user->pvz = 1;
 
-	}*/
+	}
 	
 	std::cout << "Kinderlosenzuschlag ?  ( 0 ) nein ( 1 ) ";
 	std::cin >> user->pvz;
@@ -95,7 +102,7 @@ int main( int argc, char *argv[] ) {
 
 	}
 
-	Lohnsteuer_2022( user );
+	Lohnsteuer_2023( user );
 
 	if ( user->r == 1 ) {
 
@@ -106,19 +113,25 @@ int main( int argc, char *argv[] ) {
 	sozialversicherung( user );
 	daten_zusammenrechnen( user );
 
-	std::cout << ">>-->>-- - GB Jahr " << user->ajahr << " - --<<--<<\n";
-	std::cout << ">>-->>-- - LSTLZZ " << user->lstlzz << " - --<<--<<\n";
-	std::cout << ">>-->>-- - SOLI " << user->solzlzz << " - --<<--<<\n";
-	std::cout << ">>-->>-- - Kirche " << user->kst << " - --<<--<<\n";
-	std::cout << ">>-->>-- - Renten " << user->rv << " - --<<--<<\n";
-	std::cout << ">>-->>-- - Arlose " << user->av << " - --<<--<<\n";
-	std::cout << ">>-->>-- - Kranken " << user->kv << " - --<<--<<\n";
-	std::cout << ">>-->>-- - Pflege AN " << user->pv_an << " - --<<--<<\n";
-	std::cout << ">>-->>-- - Pflege AG " << user->pv_ag << " - --<<--<<\n";
-	std::cout << ">>-->>-- - Gesamt_ST " << user->gesamt_st << " - --<<--<<\n";
-	std::cout << ">>-->>-- - sum_so_an " << user->sum_sv_an << " - --<<--<<\n";
-	std::cout << ">>-->>-- - sum_so_ag " << user->sum_sv_ag << " - --<<--<<\n";
-	std::cout << ">>-->>-- - netto_lohn " << user->netto_lohn << " - --<<--<<\n";
-	std::cout << ">>-->>-- - gesammt_belast " << user->gesamt_belast_ag << " - --<<--<<\n";
+
+	old_precision = std::cout.precision();
+	std::cout << std::setprecision(2);
+	std::cout << std::fixed;
+	std::cout << ">>-->>-- - GB Jahr " << user->ajahr << " - --<<--<<" << std::endl;
+	std::cout << ">>-->>-- - LSTLZZ " << user->lstlzz << " - --<<--<<" << std::endl;
+	std::cout << ">>-->>-- - SOLI " << user->solzlzz << " - --<<--<<" << std::endl;
+	std::cout << ">>-->>-- - Kirche " << user->kst << " - --<<--<<" << std::endl;
+	std::cout << ">>-->>-- - Rente " << user->rv << " - --<<--<<" << std::endl;
+	std::cout << ">>-->>-- - Arlose " << user->av << " - --<<--<<" << std::endl;
+	std::cout << ">>-->>-- - Kranken " << user->kv << " - --<<--<<" << std::endl;
+	std::cout << ">>-->>-- - Pflege AN " << user->pv_an << " - --<<--<<" << std::endl;
+	std::cout << ">>-->>-- - Pflege AG " << user->pv_ag << " - --<<--<<" << std::endl;
+	std::cout << ">>-->>-- - Gesamt_ST " << user->gesamt_st << " - --<<--<<" << std::endl;
+	std::cout << ">>-->>-- - sum_so_an " << user->sum_sv_an << " - --<<--<<" << std::endl;
+	std::cout << ">>-->>-- - sum_so_ag " << user->sum_sv_ag << " - --<<--<<" << std::endl;
+	std::cout << ">>-->>-- - netto_lohn " << user->netto_lohn << " - --<<--<<" << std::endl;
+	std::cout << ">>-->>-- - gesammt_belast " << user->gesamt_belast_ag << " - --<<--<<" << std::endl;
+	std::cout << std::setprecision(old_precision);
+	std::cout << std::fixed;
 
 }

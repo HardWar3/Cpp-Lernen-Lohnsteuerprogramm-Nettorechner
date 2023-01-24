@@ -1,5 +1,5 @@
-#include "../user_daten.hpp"
-#include <math.h>
+#include <user_daten.hpp>
+#include <runden.hpp>
 
 void mztabfb( struct user_daten* user ) {
 
@@ -21,7 +21,7 @@ void mztabfb( struct user_daten* user ) {
 
 			if ( user->zvbez - user->fvbz < 102 ) {
 
-				user->anp = ceil( user->zvbez - user->fvbz ); // aufrunden auf euro
+				user->anp = aufrunden( 0, user->zvbez - user->fvbz ); // aufrunden auf euro
 
 			} else {
 
@@ -45,11 +45,11 @@ void mztabfb( struct user_daten* user ) {
 
 			if ( user->zre4 - user->zvbez < 1000 ) {
 			
-				user->anp = ceil( user->anp + user->zre4 - user->zvbez ); // aufrunden auf euro
+				user->anp = aufrunden( 0, user->anp + user->zre4 - user->zvbez ); // aufrunden auf euro
 			
 			} else {
 
-				user->anp = user->anp + 1000;
+				user->anp = user->anp + 1200;
 
 			}
 
@@ -63,7 +63,7 @@ void mztabfb( struct user_daten* user ) {
 
 		user->sap = 36;
 
-		user->kfb = user->kfb * 8388;
+		user->kfb = user->kfb * 8952.00;
 
 	} else if ( user->stkl == 2 ) {
 
@@ -71,7 +71,7 @@ void mztabfb( struct user_daten* user ) {
 
 		user->sap = 36;
 
-		user->kfb = user->zkf * 8388;
+		user->kfb = user->zkf * 8952.00;
 
 	} else if ( user->stkl == 3 ) {
 
@@ -79,13 +79,13 @@ void mztabfb( struct user_daten* user ) {
 
 		user->sap = 36;
 
-		user->kfb = user->zkf * 8388;
+		user->kfb = user->zkf * 8952.00;
 
 	} else if ( user->stkl == 4 ) {
 
 		user->sap = 36;
 
-		user->kfb = user->zkf * 4194;
+		user->kfb = user->zkf * 4476.00;
 
 	} else if ( user->stkl == 5 ) {
 

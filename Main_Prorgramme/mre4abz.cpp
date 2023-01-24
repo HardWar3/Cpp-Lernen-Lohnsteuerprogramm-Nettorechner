@@ -1,4 +1,4 @@
-#include "../user_daten.hpp"
+#include <user_daten.hpp>
 
 void mre4abz( struct user_daten* user ) {
 
@@ -14,7 +14,7 @@ void mre4abz( struct user_daten* user ) {
 
 	if ( user->kennvmt == 2 ) {
 
-		user->zre4vp = user->zre4vp - user->entsch / 100; // to do
+		user->zre4vp = user->zre4vp - user->entsch * 0.01; // to do
 
 	}
 

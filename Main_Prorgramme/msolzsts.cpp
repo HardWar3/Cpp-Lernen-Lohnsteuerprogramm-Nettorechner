@@ -1,8 +1,8 @@
-#include "../user_daten.hpp"
-#include <math.h>
+#include <user_daten.hpp>
+#include <runden.hpp>
 
 extern void mst5_6( struct user_daten* user );
-extern void uptab22( struct user_daten* user );
+extern void uptab23( struct user_daten* user );
 
 void msolzsts( struct user_daten* user ) {
 
@@ -24,13 +24,13 @@ void msolzsts( struct user_daten* user ) {
 
 	} else {
 
-		user->x = floor( user->solzszve / user->kztab ); //abrunden auf ganze euros TODO
+		user->x = abrunden( 0, ( user->solzszve / (double)user->kztab ) ); //abrunden auf ganze euros TODO
 
 	}
 
 	if ( user->stkl < 5 ) {
 
-		uptab22( user );
+		uptab23( user );
 
 	} else {
 
@@ -38,11 +38,11 @@ void msolzsts( struct user_daten* user ) {
 
 	}
 
-	user->solzsbmg = floor( user->st * user->f ); // abrunden auf ganze euro
+	user->solzsbmg = abrunden( 0, ( user->st * user->f ) ); // abrunden auf ganze euro
 
 	if ( user->solzsbmg > user->solzfrei ) {
 
-		user->solzs = floor( user->sts * 5.5 / 100 ); //abrunden auf ganze cents TODO
+		user->solzs = abrunden( 2, ( user->sts * 5.5 * 0.01 ) ); //abrunden auf ganze cents TODO
 
 	} else {
 

@@ -1,5 +1,5 @@
-#ifndef _USER_DATEN_HPP_
-#define _USER_DATEN_HPP_ 1
+#pragma once
+
 #include <assert.h>
 
 struct user_daten {
@@ -143,9 +143,9 @@ struct user_daten {
 	double vsp1;
 	double vsp2;
 	double vsp3;
-	int w1stkl5;
-	int w2stkl5;
-	int w3stkl5;
+	double w1stkl5;
+	double w2stkl5;
+	double w3stkl5;
 	double x;
 	double y;
 	double zre4;
@@ -175,5 +175,3 @@ struct user_daten {
 };
 
 extern struct user_daten* new_user_daten();
-
-#endif

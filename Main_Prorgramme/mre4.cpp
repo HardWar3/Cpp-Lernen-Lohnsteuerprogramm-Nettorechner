@@ -1,5 +1,5 @@
-#include "../user_daten.hpp"
-#include <math.h>
+#include <user_daten.hpp>
+#include <runden.hpp>
 
 extern double tab( int tab,int index );
 
@@ -35,15 +35,15 @@ void mre4( struct user_daten* user ) {
 
 		if ( user->lzz == 1 ) {
 		
-			user->vbezb = user->vbezm * user->zmvb + user->vbezs;
+			user->vbezb = ( user->vbezm * (double)user->zmvb ) + user->vbezs;
 
-			user->hfvb = tab( 2, user->j ) / 12 * user->zmvb; // to do
+			user->hfvb = ( tab( 2, user->j ) / 12.00 ) * (double)user->zmvb; // to do
 
-			user->fvbz = ceil( tab( 3, user->j ) / 12 * user->zmvb ); // aufrunden auf euro
+			user->fvbz = aufrunden( 0, (tab( 3, user->j ) / 12.00 ) * (double)user->zmvb ); // aufrunden auf euro
 		
 		} else {
 
-			user->vbezb = user->vbezm * 12 + user->vbezs;
+			user->vbezb = user->vbezm * 12.00 + user->vbezs;
 
 			user->hfvb = tab( 2, user->j );
 
@@ -51,7 +51,7 @@ void mre4( struct user_daten* user ) {
 
 		}
 
-		user->fvb = ceil( user->vbezb * tab( 1, user->j ) / 100 ); // aufrunden auf cent
+		user->fvb = aufrunden( 2, ( user->vbezb * tab( 1, user->j ) ) * 0.01 ); // aufrunden auf cent
 
 		if ( user->fvb > user->hfvb ) {
 
@@ -65,7 +65,7 @@ void mre4( struct user_daten* user ) {
 
 		}
 
-		user->fvbso = ceil( user->fvb + user->vbezbso * tab( 1, user->j ) / 100 ); // aufrunden auf cent
+		user->fvbso = aufrunden( 2, ( user->fvb + ( user->vbezbso * tab( 1, user->j ) ) * 0.01 ) ); // aufrunden auf cent
 
 		if ( user->fvbso > tab( 2, user->j ) ) {
 
@@ -73,13 +73,13 @@ void mre4( struct user_daten* user ) {
 
 		}
 
-		user->hfvbzso = ( user->vbezb + user->vbezbso ) / 100 - user->fvbso;
+		user->hfvbzso = ( user->vbezb + user->vbezbso ) * 0.01 - user->fvbso;
 
-		user->fvbzso = ceil( user->fvbz + user->vbezbso / 100 ); // aufrunden auf euro
+		user->fvbzso = aufrunden( 0, ( user->fvbz + user->vbezbso * 0.01 ) ); // aufrunden auf euro
 
 		if ( user->fvbzso > user->hfvbzso ) {
 
-			user->fvbzso = ceil( user->hfvbzso ); // aufreunde auf euro
+			user->fvbzso = aufrunden( 0, user->hfvbzso ); // aufreunde auf euro
 
 		}
 
@@ -89,11 +89,11 @@ void mre4( struct user_daten* user ) {
 
 		}
 
-		user->hfvbz = user->vbezb / 100 - user->fvb;
+		user->hfvbz = user->vbezb * 0.01 - user->fvb;
 
 		if ( user->fvbz > user-> hfvbz ) {
 
-			user->fvbz = ceil( user->hfvbz ); // aufrunden auf euro
+			user->fvbz = aufrunden( 0, user->hfvbz ); // aufrunden auf euro
 
 		}
 

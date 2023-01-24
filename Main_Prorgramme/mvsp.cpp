@@ -1,5 +1,5 @@
-#include "../user_daten.hpp"
-#include <math.h>
+#include <user_daten.hpp>
+#include <runden.hpp>
 
 void mvsp( struct user_daten* user ) {
 
@@ -17,7 +17,7 @@ void mvsp( struct user_daten* user ) {
 
 		} else {
 
-			user->vsp3 = user->pkpv * 12 / 100;
+			user->vsp3 = user->pkpv * 12.00 * 0.01;
 
 			if ( user->pkv == 2 ) {
 
@@ -33,6 +33,6 @@ void mvsp( struct user_daten* user ) {
 
 	}
 
-	user->vsp = ceil( user->vsp3 + user->vsp1 ); // aufrunden auf ganze euro
+	user->vsp = aufrunden( 0, user->vsp3 + user->vsp1 ); // aufrunden auf ganze euro
 
 }

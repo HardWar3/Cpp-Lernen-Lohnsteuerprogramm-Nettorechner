@@ -1,17 +1,17 @@
-#include "../user_daten.hpp"
-#include <math.h>
+#include <user_daten.hpp>
+#include <runden.hpp>
 
 extern void upanteil( struct user_daten* user );
 
 void msolz( struct user_daten* user ) {
 
-	user->solzfrei = user->solzfrei * user->kztab;
+	user->solzfrei = user->solzfrei * (double)user->kztab;
 
 	if ( user->jbmg > user->solzfrei ) {
 
-		user->solzj = floor( user->jbmg * 5.5 / 100 ); // abrunde auf ganze cents und TODO
+		user->solzj = abrunden( 2, ( user->jbmg * 5.5 * 0.01 ) ); // abrunde auf ganze cents und TODO
 
-		user->solzmin = ( user->jbmg - user->solzfrei ) * 11.9 / 100; // TODO
+		user->solzmin = ( user->jbmg - user->solzfrei ) * 0.119; // TODO
 
 		if ( user->solzmin < user->solzj ) {
 
@@ -19,7 +19,7 @@ void msolz( struct user_daten* user ) {
 
 		}
 
-		user->jw = user->solzj * 100;
+		user->jw = user->solzj * 100.00;
 
 		upanteil( user );
 
@@ -33,7 +33,7 @@ void msolz( struct user_daten* user ) {
 
 	if ( user->r > 0 ) {
 
-		user->jw = user->jbmg * 100;
+		user->jw = user->jbmg * 100.00;
 
 		upanteil( user );
 

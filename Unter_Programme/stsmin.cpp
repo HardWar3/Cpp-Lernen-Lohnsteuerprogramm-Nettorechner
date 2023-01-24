@@ -1,5 +1,5 @@
-#include "../user_daten.hpp"
-#include <math.h>
+#include <user_daten.hpp>
+#include <runden.hpp>
 
 extern void msolzsts( struct user_daten* user );
 
@@ -17,7 +17,7 @@ void stsmin( struct user_daten* user ) {
 
 			}
 
-			user->solzlzz = floor( user->solzlzz + user->sts * 5.5 / 100 ); // abrunden auf ganze cents TODO
+			user->solzlzz = abrunden( 2, user->solzlzz + user->sts * 5.5 * 0.01 ); // abrunden auf ganze cents TODO
 
 			if ( user->solzlzz < 0 ) {
 

@@ -1,4 +1,4 @@
-#include "../user_daten.hpp"
+#include <user_daten.hpp>
 
 void upvkv( struct user_daten* user ) {
 
@@ -6,11 +6,11 @@ void upvkv( struct user_daten* user ) {
 
 		if ( user->vsp2 > user->vsp3 ) {
 
-			user->vkv = user->vsp2 * 100;
+			user->vkv = user->vsp2 * 100.00;
 
 		} else {
 			
-			user->vkv = user->vsp3 * 100;
+			user->vkv = user->vsp3 * 100.00;
 
 		}
 

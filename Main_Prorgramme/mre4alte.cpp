@@ -1,5 +1,5 @@
-#include "../user_daten.hpp"
-#include <math.h>
+#include <user_daten.hpp>
+#include <runden.hpp>
 
 extern double tab( int tag, int index );
 
@@ -27,7 +27,7 @@ void mre4alte( struct user_daten* user ) {
 
 		user->bmg = user->zre4j - user->zvbezj;
 
-		user->alte = ceil( user->bmg * tab( 4, user->k ) ); // aufrunden auf euro
+		user->alte = aufrunden( 0, ( user->bmg * tab( 4, user->k ) ) ); // aufrunden auf euro
 
 		user->hbalte = tab( 5, user->k );
 

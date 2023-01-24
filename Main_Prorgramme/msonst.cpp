@@ -1,5 +1,5 @@
-#include "../user_daten.hpp"
-#include <math.h>
+#include <user_daten.hpp>
+#include <runden.hpp>
 
 extern void mosonst( struct user_daten* user );
 extern void mre4sonst( struct user_daten* user );
@@ -37,9 +37,9 @@ void msonst( struct user_daten* user ) {
 
 		user->vkvsonst = user->vkv;
 
-		user->zre4j = ( user->jre4 + user->sonstb ) / 100;
+		user->zre4j = ( user->jre4 + user->sonstb ) * 0.01;
 
-		user->zvbezj = ( user->jvbez + user->vbs ) / 100;
+		user->zvbezj = ( user->jvbez + user->vbs ) * 0.01;
 
 		user->vbezbso = user->sterbe;
 
@@ -47,7 +47,7 @@ void msonst( struct user_daten* user ) {
 
 		mlstjahr( user );
 
-		user->wvfrbm = ( user->zve - user->gfb ) * 100;
+		user->wvfrbm = ( user->zve - user->gfb ) * 100.00;
 
 		if ( user->wvfrbm < 0 ) {
 
@@ -59,9 +59,9 @@ void msonst( struct user_daten* user ) {
 
 		user->vkvsonst = user->vkv - user->vkvsonst;
 
-		user->lstso = user->st * 100;
+		user->lstso = user->st * 100.00;
 
-		user->sts = floor( ( user->lstso - user->lstoso ) * user->f ); // abrunden auf ganze euro HINWEIS PAP
+		user->sts = abrunden( 0,  ( user->lstso - user->lstoso ) * user->f ); // abrunden auf ganze euro HINWEIS PAP
 
 		stsmin( user );
 

@@ -1,4 +1,4 @@
-#include "../user_daten.hpp"
+#include <user_daten.hpp>
 
 extern void mztabfb( struct user_daten* user );
 extern void mlstjahr( struct user_daten* user );

@@ -1,4 +1,4 @@
-#include "../user_daten.hpp"
+#include <user_daten.hpp>
 
 
 
@@ -8,25 +8,25 @@ void mpara( struct user_daten* user ) {
 	
 		if ( user->krv == 0 ) {
 		
-			user->bbgrv = 84600;
+			user->bbgrv = 87600;
 
 		} else {
 		
-			user->bbgrv = 81000;
+			user->bbgrv = 85200;
 		
 		}
 
 		user->rvsatzan = 0.093;
 
-		user->tbsvorv = 0.88;
+		user->tbsvorv = 1.00;
 
 	}
 
-	user->bbgkvpv = 58050;
+	user->bbgkvpv = 59850;
 
-	user->kvsatzan = user->kvz / 2 / 100 + 0.07; // TODO			// to do
+	user->kvsatzan = user->kvz / 200.00 + 0.07;
 
-	user->kvsatzag = 0.0065 + 0.07;
+	user->kvsatzag = 0.008 + 0.07;
 
 	if ( user->pvs == 1 ) {
 	
@@ -48,14 +48,14 @@ void mpara( struct user_daten* user ) {
 
 	}
 
-	user->w1stkl5 = 11480;
+	user->w1stkl5 = 12485;
 
-	user->w2stkl5 = 29298;
+	user->w2stkl5 = 31404;
 
 	user->w3stkl5 = 222260;
 
-	user->gfb = 9984;
+	user->gfb = 10908;
 
-	user->solzfrei = 16956;
+	user->solzfrei = 17543;
 
 }
